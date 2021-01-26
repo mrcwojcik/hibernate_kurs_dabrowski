@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'pl.mrcwojcik.hibernate'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,10 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
+    implementation 'org.hibernate:hibernate-core:5.4.18.Final'
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
 
-test {
-    useJUnitPlatform()
+    runtime 'mysql:mysql-connector-java:8.0.21'
 }
