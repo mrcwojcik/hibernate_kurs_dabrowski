@@ -3,6 +3,7 @@ package pl.mrcwojcik.hibernate.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 //@Table - możemy wskazać, jak zapiszemy encję w tabeli
@@ -28,6 +29,10 @@ public class Product {
     @Enumerated(EnumType.STRING) // mapowanie enuma
     @Column(name = "type")
     private ProductType productType;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<Review> reviewList;
 
     // Hibernate daje dwie możliwości. Umieszczanie adnotacji na polach, ale też na getterach i setterach. Trzeba wybrać tylko jedną formę.
 
@@ -88,6 +93,14 @@ public class Product {
         this.productType = productType;
     }
 
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -98,6 +111,7 @@ public class Product {
                 ", updated=" + updated +
                 ", price=" + price +
                 ", productType=" + productType +
+                ", reviewList=" + reviewList +
                 '}';
     }
 }
