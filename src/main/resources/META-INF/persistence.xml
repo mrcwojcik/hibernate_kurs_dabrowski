@@ -3,6 +3,7 @@
     <persistence-unit transaction-type="RESOURCE_LOCAL" name="unit">
         <class>pl.mrcwojcik.hibernate.entity.Product</class>
         <class>pl.mrcwojcik.hibernate.entity.Review</class>
+        <class>pl.mrcwojcik.hibernate.entity.Category</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=UTC"/>

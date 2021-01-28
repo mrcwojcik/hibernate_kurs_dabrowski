@@ -33,6 +33,9 @@ public class Product {
     @OneToMany (mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Review> reviewList;
 
+    @OneToOne(fetch = FetchType.LAZY)// domyślnie Eager
+    private Category category;
+
     // Hibernate daje dwie możliwości. Umieszczanie adnotacji na polach, ale też na getterach i setterach. Trzeba wybrać tylko jedną formę.
 
 
@@ -98,6 +101,14 @@ public class Product {
 
     public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
