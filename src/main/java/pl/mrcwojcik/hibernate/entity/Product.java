@@ -30,8 +30,7 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany
-    @JoinColumn(name = "product_id")
+    @OneToMany (mappedBy = "product")
     private List<Review> reviewList;
 
     // Hibernate daje dwie możliwości. Umieszczanie adnotacji na polach, ale też na getterach i setterach. Trzeba wybrać tylko jedną formę.
@@ -111,7 +110,6 @@ public class Product {
                 ", updated=" + updated +
                 ", price=" + price +
                 ", productType=" + productType +
-                ", reviewList=" + reviewList +
                 '}';
     }
 }

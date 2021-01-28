@@ -1,9 +1,6 @@
 package pl.mrcwojcik.hibernate.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -14,6 +11,9 @@ public class Review {
 
     private String content;
     private int rating;
+
+    @ManyToOne (fetch = FetchType.LAZY) // relacja dwukierunkowa tylko wtedy, gdy jest naprawdę potrzebna
+    private Product product;
 
     public Long getId() {
         return id;
@@ -37,6 +37,14 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
