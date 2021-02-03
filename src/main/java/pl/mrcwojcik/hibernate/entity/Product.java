@@ -36,6 +36,13 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY)// domyślnie Eager
     private Category category;
 
+    @ManyToMany
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "attribute_id")}
+    )
+    private List<Attribute> attributes;
+
     // Hibernate daje dwie możliwości. Umieszczanie adnotacji na polach, ale też na getterach i setterach. Trzeba wybrać tylko jedną formę.
 
 
@@ -109,6 +116,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
     }
 
     @Override
