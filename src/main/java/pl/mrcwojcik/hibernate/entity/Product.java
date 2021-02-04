@@ -33,8 +33,8 @@ public class Product {
     @Column(name = "type")
     private ProductType productType;
 
-    @OneToMany (mappedBy = "product", cascade = CascadeType.REMOVE)
-    private List<Review> reviewList;
+    @OneToMany (mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST} )
+    private List<Review> reviewList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)// domyślnie Eager
     private Category category;
@@ -51,6 +51,11 @@ public class Product {
     public void addAttribute(Attribute attribute){
         attributes.add(attribute);
         attribute.getProducts().add(this);
+    }
+
+    public void addReview(Review review){
+        reviewList.add(review);
+        review.setProduct(this);
     }
 
 
