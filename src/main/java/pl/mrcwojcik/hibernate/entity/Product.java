@@ -3,7 +3,10 @@ package pl.mrcwojcik.hibernate.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 //@Table - możemy wskazać, jak zapiszemy encję w tabeli
@@ -36,14 +39,19 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY)// domyślnie Eager
     private Category category;
 
-    @ManyToMany
+    @ManyToMany (cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "attribute_id")}
     )
-    private List<Attribute> attributes;
+    private Set<Attribute> attributes = new HashSet<>();
 
     // Hibernate daje dwie możliwości. Umieszczanie adnotacji na polach, ale też na getterach i setterach. Trzeba wybrać tylko jedną formę.
+
+    public void addAttribute(Attribute attribute){
+        attributes.add(attribute);
+        attribute.getProducts().add(this);
+    }
 
 
     public Long getId() {
@@ -118,13 +126,15 @@ public class Product {
         this.category = category;
     }
 
-    public List<Attribute> getAttributes() {
+    public Set<Attribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<Attribute> attributes) {
+    public void setAttributes(Set<Attribute> attributes) {
         this.attributes = attributes;
     }
+
+
 
     @Override
     public String toString() {
