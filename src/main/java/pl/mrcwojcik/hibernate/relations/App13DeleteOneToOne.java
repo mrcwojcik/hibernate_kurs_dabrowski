@@ -1,17 +1,13 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.relations;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import pl.mrcwojcik.hibernate.entity.Attribute;
 import pl.mrcwojcik.hibernate.entity.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class App10ManyToMany {
+public class App13DeleteOneToOne {
 
-    private static Logger logger = LogManager.getLogger(App.class);
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
 
     public static void main(String[] args) {
@@ -19,12 +15,10 @@ public class App10ManyToMany {
         em.getTransaction().begin();
 
         Product product = em.find(Product.class, 3L);
-        logger.info(product);
-        logger.info(product.getAttributes());
-
-        Attribute attribute = em.find(Attribute.class, 1L);
-        logger.info(attribute);
-        logger.info(attribute.getProducts());
+        if (product.getCategory().getProduct().size() == 1){
+            em.remove(product.getCategory());
+        }
+        product.setCategory(null);
 
         em.getTransaction().commit();
         em.close();

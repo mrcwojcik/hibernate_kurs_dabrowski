@@ -1,15 +1,15 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.crud;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.mrcwojcik.hibernate.entity.Review;
+import pl.mrcwojcik.hibernate.App;
+import pl.mrcwojcik.hibernate.entity.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public class App06OneToManyBidirectional {
+public class App04Delete {
 
     private static Logger logger = LogManager.getLogger(App.class);
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
@@ -18,17 +18,11 @@ public class App06OneToManyBidirectional {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        List<Review> reviews = em.createQuery("SELECT r FROM Review r").getResultList();
-
-        for (Review r: reviews){
-            logger.info(r);
-            logger.info(r.getProduct());
-        }
+        Product product = em.find(Product.class, 1L);
+        em.remove(product);
 
         em.getTransaction().commit();
         em.close();
     }
-
-
 
 }

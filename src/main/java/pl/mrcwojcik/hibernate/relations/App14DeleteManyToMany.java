@@ -1,4 +1,4 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.relations;
 
 import pl.mrcwojcik.hibernate.entity.Attribute;
 import pl.mrcwojcik.hibernate.entity.Product;

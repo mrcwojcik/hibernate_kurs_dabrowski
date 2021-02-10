@@ -1,5 +1,6 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.crud;
 
+import pl.mrcwojcik.hibernate.App;
 import pl.mrcwojcik.hibernate.entity.Product;
 import pl.mrcwojcik.hibernate.entity.ProductType;
 import org.apache.logging.log4j.LogManager;
