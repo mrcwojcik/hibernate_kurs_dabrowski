@@ -2,6 +2,7 @@ package pl.mrcwojcik.hibernate.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Category {
@@ -12,7 +13,7 @@ public class Category {
     private String name;
     private String description;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    private List<Product> product;
+    private Set<Product> product;
 
     public Long getId() {
         return id;
@@ -38,11 +39,11 @@ public class Category {
         this.description = description;
     }
 
-    public List<Product> getProduct() {
+    public Set<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(List<Product> product) {
+    public void setProduct(Set<Product> product) {
         this.product = product;
     }
 

@@ -34,7 +34,7 @@ public class Product {
     private ProductType productType;
 
     @OneToMany (mappedBy = "product", cascade = {CascadeType.REMOVE, CascadeType.PERSIST} )
-    private List<Review> reviewList = new ArrayList<>();
+    private Set<Review> reviewList = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)// domyślnie Eager
     private Category category;
@@ -115,11 +115,11 @@ public class Product {
         this.productType = productType;
     }
 
-    public List<Review> getReviewList() {
+    public Set<Review> getReviewList() {
         return reviewList;
     }
 
-    public void setReviewList(List<Review> reviewList) {
+    public void setReviewList(Set<Review> reviewList) {
         this.reviewList = reviewList;
     }
 
