@@ -5,6 +5,9 @@
         <class>pl.mrcwojcik.hibernate.entity.Review</class>
         <class>pl.mrcwojcik.hibernate.entity.Category</class>
         <class>pl.mrcwojcik.hibernate.entity.Attribute</class>
+        <class>pl.mrcwojcik.hibernate.entity.Customer</class>
+        <class>pl.mrcwojcik.hibernate.entity.Order</class>
+        <class>pl.mrcwojcik.hibernate.entity.OrderRow</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=UTC"/>
