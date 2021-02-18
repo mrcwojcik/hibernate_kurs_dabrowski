@@ -6,6 +6,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@NamedEntityGraph(
+        name = "order-rows",
+        attributeNodes = {
+                @NamedAttributeNode(value = "orderRows", subgraph = "orderRows"),
+                @NamedAttributeNode("customer")
+        }, subgraphs = @NamedSubgraph(
+                name = "orderRows",
+                attributeNodes = @NamedAttributeNode("product")
+        )
+)
 @Entity
 @Table(name = "\"order\"")
 public class Order {
@@ -20,6 +30,9 @@ public class Order {
     @OneToMany
     @JoinColumn (name = "order_id")
     private Set<OrderRow> orderRows;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Customer customer;
 
     public Long getId() {
         return id;
@@ -51,6 +64,14 @@ public class Order {
 
     public void setOrderRows(Set<OrderRow> orderRows) {
         this.orderRows = orderRows;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
