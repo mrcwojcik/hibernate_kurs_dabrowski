@@ -1,4 +1,4 @@
-package pl.mrcwojcik.hibernate.crud;
+package pl.mrcwojcik.hibernate.lessons.crud;
 
 import pl.mrcwojcik.hibernate.App;
 import pl.mrcwojcik.hibernate.entity.Product;

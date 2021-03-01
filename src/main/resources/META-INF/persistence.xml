@@ -8,6 +8,7 @@
         <class>pl.mrcwojcik.hibernate.entity.Customer</class>
         <class>pl.mrcwojcik.hibernate.entity.Order</class>
         <class>pl.mrcwojcik.hibernate.entity.OrderRow</class>
+        <class>pl.mrcwojcik.hibernate.entity.batch.BatchReview</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=UTC"/>
@@ -16,6 +17,9 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.jdbc.batch_size" value="5" />
+            <property name="hibernate.order_updates" value="true" />
+            <property name="hibernate.order_inserts" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

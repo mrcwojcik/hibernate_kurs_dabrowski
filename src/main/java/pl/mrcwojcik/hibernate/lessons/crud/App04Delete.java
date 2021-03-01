@@ -1,4 +1,4 @@
-package pl.mrcwojcik.hibernate.crud;
+package pl.mrcwojcik.hibernate.lessons.crud;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

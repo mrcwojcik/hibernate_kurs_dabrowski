@@ -1,10 +1,9 @@
-package pl.mrcwojcik.hibernate.relations;
+package pl.mrcwojcik.hibernate.lessons.relations;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.mrcwojcik.hibernate.App;
 import pl.mrcwojcik.hibernate.entity.Attribute;
-import pl.mrcwojcik.hibernate.entity.Category;
 import pl.mrcwojcik.hibernate.entity.Product;
 
 import javax.persistence.EntityManager;

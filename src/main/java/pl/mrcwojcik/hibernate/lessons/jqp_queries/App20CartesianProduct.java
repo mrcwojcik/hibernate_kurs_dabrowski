@@ -1,8 +1,9 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.lessons.jqp_queries;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.QueryHints;
+import pl.mrcwojcik.hibernate.App;
 import pl.mrcwojcik.hibernate.entity.Product;
 
 import javax.persistence.*;

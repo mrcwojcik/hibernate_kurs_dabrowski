@@ -1,8 +1,9 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.lessons.jqp_queries;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.mrcwojcik.hibernate.App;
 import pl.mrcwojcik.hibernate.entity.Customer;
 import pl.mrcwojcik.hibernate.entity.Order;
 

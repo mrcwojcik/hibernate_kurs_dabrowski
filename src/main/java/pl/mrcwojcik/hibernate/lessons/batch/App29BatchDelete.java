@@ -1,17 +1,16 @@
-package pl.mrcwojcik.hibernate;
+package pl.mrcwojcik.hibernate.lessons.batch;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.mrcwojcik.hibernate.entity.Category;
-import pl.mrcwojcik.hibernate.entity.Product;
+import pl.mrcwojcik.hibernate.App;
+import pl.mrcwojcik.hibernate.entity.batch.BatchReview;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class App19MultiJoin {
+public class App29BatchDelete {
 
     private static Logger logger = LogManager.getLogger(App.class);
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("unit");
@@ -20,15 +19,13 @@ public class App19MultiJoin {
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
 
-        TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c LEFT JOIN FETCH c.product p LEFT JOIN FETCH p.reviewList WHERE c.id=:id", Category.class);
-        query.setParameter("id", 1L);
-        List<Category> resultList = query.getResultList();
+        List<BatchReview> reviewList = em.createQuery("SELECT r FROM BatchReview r WHERE r.productId=:id", BatchReview.class)
+                .setParameter("id", 1L)
+                .getResultList();
 
-        for (Category c: resultList){
-            logger.info(c);
-            for (Product p : c.getProduct()){
-                logger.info(p.getReviewList());
-            }
+        for (BatchReview batchReview : reviewList){
+            logger.info(batchReview);
+            em.remove(batchReview);
         }
 
         em.getTransaction().commit();

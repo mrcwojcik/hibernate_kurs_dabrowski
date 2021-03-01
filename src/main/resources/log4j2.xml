@@ -17,6 +17,9 @@
         <Logger name="org.hibernate.type.descriptor.sql" additivity="false" level="info">
             <AppenderRef ref="Console-Appender"/>
         </Logger>
+        <Logger name="org.hibernate.engine.jdbc.batch.internal.BatchingBatch" level="debug" additivity="false">
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="Console-Appender"/>
         </Root>

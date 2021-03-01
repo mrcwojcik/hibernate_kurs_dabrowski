@@ -1,4 +1,4 @@
-package pl.mrcwojcik.hibernate.relations;
+package pl.mrcwojcik.hibernate.lessons.relations;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
