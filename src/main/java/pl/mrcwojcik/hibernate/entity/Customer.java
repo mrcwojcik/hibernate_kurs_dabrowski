@@ -2,6 +2,7 @@ package pl.mrcwojcik.hibernate.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,6 +19,12 @@ public class Customer {
 
     @OneToMany (mappedBy = "customer")
     private Set<Order> orders;
+
+    @ElementCollection
+    private List<Address> address;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL, optional = false)
+    private CustomerDetails customerDetails;
 
     public Long getId() {
         return id;
@@ -65,6 +72,22 @@ public class Customer {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> addressList) {
+        this.address = addressList;
+    }
+
+    public CustomerDetails getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public void setCustomerDetails(CustomerDetails customerDetails) {
+        this.customerDetails = customerDetails;
     }
 
     @Override

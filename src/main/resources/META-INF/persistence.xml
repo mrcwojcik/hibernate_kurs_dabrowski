@@ -9,6 +9,8 @@
         <class>pl.mrcwojcik.hibernate.entity.Order</class>
         <class>pl.mrcwojcik.hibernate.entity.OrderRow</class>
         <class>pl.mrcwojcik.hibernate.entity.batch.BatchReview</class>
+        <class>pl.mrcwojcik.hibernate.entity.CustomerDetails</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=UTC"/>
