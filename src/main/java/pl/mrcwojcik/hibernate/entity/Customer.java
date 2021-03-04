@@ -1,9 +1,10 @@
 package pl.mrcwojcik.hibernate.entity;
 
+import org.hibernate.annotations.SortComparator;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Customer {
@@ -25,6 +26,35 @@ public class Customer {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL, optional = false)
     private CustomerDetails customerDetails;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "customer_id")
+//    @OrderBy("id desc")
+    @SortComparator(SortById.class)
+    private SortedSet<Review> reviews = new TreeSet<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Note> notes = new ArrayList<>();
+
+    public static class SortById implements Comparator<Review>{
+        @Override
+        public int compare(Review o1, Review o2) {
+            return o1.getId().compareTo(o2.getId());
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(lastname, customer.lastname) && Objects.equals(created, customer.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastname, created);
+    }
 
     public Long getId() {
         return id;
@@ -88,6 +118,22 @@ public class Customer {
 
     public void setCustomerDetails(CustomerDetails customerDetails) {
         this.customerDetails = customerDetails;
+    }
+
+    public SortedSet<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(SortedSet<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 
     @Override

@@ -3,7 +3,7 @@ package pl.mrcwojcik.hibernate.entity;
 import javax.persistence.*;
 
 @Entity
-public class Review {
+public class Review implements Comparable<Review> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +45,11 @@ public class Review {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    @Override
+    public int compareTo(Review o) {
+        return id.compareTo(o.id);
     }
 
     @Override

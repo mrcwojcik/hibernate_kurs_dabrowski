@@ -13,6 +13,7 @@
         <class>pl.mrcwojcik.hibernate.entity.product.BaseProduct</class>
         <class>pl.mrcwojcik.hibernate.entity.product.VirtualProduct</class>
         <class>pl.mrcwojcik.hibernate.entity.product.RealProduct</class>
+        <class>pl.mrcwojcik.hibernate.entity.Note</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/kurshibernate?useUnicode=true&amp;serverTimezone=UTC"/>
