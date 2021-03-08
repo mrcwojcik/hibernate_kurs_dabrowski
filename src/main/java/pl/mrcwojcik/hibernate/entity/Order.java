@@ -1,5 +1,7 @@
 package pl.mrcwojcik.hibernate.entity;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +21,8 @@ import java.util.Set;
 )
 @Entity
 @Table(name = "\"order\"")
+@Cacheable
+@org.hibernate.annotations.Cache(region = "order", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Order {
 
     @Id

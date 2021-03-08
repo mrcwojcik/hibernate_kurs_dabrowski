@@ -1,5 +1,6 @@
 package pl.mrcwojcik.hibernate.entity;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.SortComparator;
 
 import javax.persistence.*;
@@ -7,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "customer")
 public class Customer {
 
     @Id
@@ -19,6 +22,7 @@ public class Customer {
     private LocalDateTime updated;
 
     @OneToMany (mappedBy = "customer")
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "orders")
     private Set<Order> orders;
 
     @ElementCollection
